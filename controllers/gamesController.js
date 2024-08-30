@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { Game, Wishlist, Collection, User, Note } = require("../models");
+const { Model, Sequelize } = require("sequelize");
+const sequelize = require("../config/connection");
 
 router.get("/most-wanted", (req, res) => {
   Game.findAll()
@@ -32,6 +34,24 @@ router.get("/most-wanted", (req, res) => {
       res.status(500).json({ msg: "oh no", err });
     });
 });
+// router.get("/most-wanted", (req, res) => {
+//   Game.findAll({
+//     include: [
+//       {
+//         model: Wishlist,
+//       },
+//     ],
+//     attributes: {
+//       include: [
+//         [Sequelize.fn("COUNT", Sequelize.col("Wishlists.GameId")), "wishes"],
+//       ],
+//     },
+//     group: ["Game.id"],
+//   }).then((data) => {
+//     console.log(data);
+//     res.json(data);
+//   });
+// });
 
 router.get("/most-collected", (req, res) => {
   Game.findAll()
