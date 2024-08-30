@@ -38,7 +38,7 @@ const collections = [
   },
   {
     UserId: 2,
-    GameId: 1,
+    GameId: 2,
   },
 ];
 const wishlists = [

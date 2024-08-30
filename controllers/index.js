@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("welcome");
-});
+const gamesRoutes = require("./gamesController");
+router.use("/api/games", gamesRoutes);
 
 module.exports = router;
